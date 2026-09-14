@@ -1,5 +1,7 @@
 subscription_id = "71a493c0-e420-4676-ab7c-c5d0ea5128a4"
 
+linux_ssh_public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCC5uquc103cMyXTYTGNKnF4zAVXQemcd4T+tEbjSOX848d77oTRLjmMT4z0qkhKvPahap32AXPVZva3Iu3hswqU/X1k0Kclyp7J5DsLfUaYrwBnB7FR10NLt+u513e21AtZS//K5/jeikCBcPHGuiHM4hJTf+D2Ny9lG/pbP9b+p9/5nv5Kd3vxYAmUttfD1yAfyfh47L4cg/t3ctbHUCdtkizZ9JeRIOKlNctnBX2Kg5UoeDqF5U7trtAY0VwYdEkrtiZcCJVAq4+F2tmzLxn3nOVs+YSJPR7LYIhiDWApnXbLoB7p2QfX8DFcks3/kOW4D9B3X5mc/qoztBsXdqiBC4UnKILv/BEZmLu0X3VeQ0TXUCJEbJC8E7CXuRMG4EhPvD1NigRrTXH217Yyf7uKKTvhGRJ4fV5acP2EZMkrrPWSj7mr30emVFZ/zgrMgkA7oGMzWfXCAp0m8BIPmlhRhfjfyHGwSNRV5JFWnOH4Um48kgB4GcaO499OAf6gFBMT7S/f3pG4hNNvOKLsCt4RXXU9jGs632kzGWi+cUuMUNh7kq8epsRJvbRLP1SmJTNUKO1YBcNU/Ejc0pN8Ln+by/qV4Sv93dOg5h9FN+RuQYjlo5nCwmta530RFmiexhkvifWdoI23/OJFZrRLWdq428a/GBecvOyRkRkat5lmQ== surendrababu1037@gmail.com"
+
 workloads = {
   "rg01" = {
     name_prefix          = "uat-rg01"
