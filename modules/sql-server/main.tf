@@ -1,14 +1,14 @@
 resource "azurerm_mssql_server" "this" {
-  name                           = var.name
-  location                       = var.location
-  resource_group_name            = var.resource_group_name
-  version                        = var.sql_version
-  administrator_login            = var.administrator_login
-  public_network_access_enabled  = var.public_network_access_enabled
+  name                          = var.name
+  location                      = var.location
+  resource_group_name           = var.resource_group_name
+  version                       = var.sql_version
+  public_network_access_enabled = var.public_network_access_enabled
 
   azuread_administrator {
-    login_username = var.aad_admin_login
-    object_id      = var.aad_admin_object_id
+    login_username              = var.aad_admin_login
+    object_id                   = var.aad_admin_object_id
+    azuread_authentication_only = true
   }
 }
 
