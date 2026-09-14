@@ -61,7 +61,7 @@ module "data_factory" {
 }
 
 module "key_vault" {
-  source              = "../keyvault"
+  source              = "../key-vault"
   name                = var.keyvault_name
   location            = var.location_primary
   resource_group_name = module.rg.name
