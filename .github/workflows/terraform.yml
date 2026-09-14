@@ -51,6 +51,7 @@ jobs:
           ARM_TENANT_ID: ${{ vars.AZURE_TENANT_ID }}
           ARM_SUBSCRIPTION_ID: ${{ vars.AZURE_SUBSCRIPTION_ID }}
           ARM_USE_OIDC: "true"
+          ARM_USE_AZUREAD_AUTH: "true"
         run: terraform init
 
       - name: Terraform Plan
@@ -60,6 +61,11 @@ jobs:
           ARM_TENANT_ID: ${{ vars.AZURE_TENANT_ID }}
           ARM_SUBSCRIPTION_ID: ${{ vars.AZURE_SUBSCRIPTION_ID }}
           ARM_USE_OIDC: "true"
+          ARM_USE_AZUREAD_AUTH: "true"
+          TF_VAR_linux_ssh_public_key: ${{ secrets.LINUX_SSH_PUBLIC_KEY }}
+          TF_VAR_windows_admin_password: ${{ secrets.WINDOWS_ADMIN_PASSWORD }}
+          TF_VAR_sql_aad_admin_login: ${{ secrets.SQL_AAD_ADMIN_LOGIN }}
+          TF_VAR_sql_aad_admin_object_id: ${{ secrets.SQL_AAD_ADMIN_OBJECT_ID }}
         run: terraform plan -var-file="uat.tfvars" -input=false
 
       - name: Terraform Apply
@@ -69,6 +75,11 @@ jobs:
           ARM_TENANT_ID: ${{ vars.AZURE_TENANT_ID }}
           ARM_SUBSCRIPTION_ID: ${{ vars.AZURE_SUBSCRIPTION_ID }}
           ARM_USE_OIDC: "true"
+          ARM_USE_AZUREAD_AUTH: "true"
+          TF_VAR_linux_ssh_public_key: ${{ secrets.LINUX_SSH_PUBLIC_KEY }}
+          TF_VAR_windows_admin_password: ${{ secrets.WINDOWS_ADMIN_PASSWORD }}
+          TF_VAR_sql_aad_admin_login: ${{ secrets.SQL_AAD_ADMIN_LOGIN }}
+          TF_VAR_sql_aad_admin_object_id: ${{ secrets.SQL_AAD_ADMIN_OBJECT_ID }}
         run: terraform apply -var-file="uat.tfvars" -auto-approve -input=false
 
       - name: Terraform Destroy
@@ -78,4 +89,9 @@ jobs:
           ARM_TENANT_ID: ${{ vars.AZURE_TENANT_ID }}
           ARM_SUBSCRIPTION_ID: ${{ vars.AZURE_SUBSCRIPTION_ID }}
           ARM_USE_OIDC: "true"
+          ARM_USE_AZUREAD_AUTH: "true"
+          TF_VAR_linux_ssh_public_key: ${{ secrets.LINUX_SSH_PUBLIC_KEY }}
+          TF_VAR_windows_admin_password: ${{ secrets.WINDOWS_ADMIN_PASSWORD }}
+          TF_VAR_sql_aad_admin_login: ${{ secrets.SQL_AAD_ADMIN_LOGIN }}
+          TF_VAR_sql_aad_admin_object_id: ${{ secrets.SQL_AAD_ADMIN_OBJECT_ID }}
         run: terraform destroy -var-file="uat.tfvars" -auto-approve -input=false
