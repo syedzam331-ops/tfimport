@@ -26,41 +26,42 @@ module "network_windows" {
   ]
 }
 
-module "vm_linux" {
-  source               = "../virtual-machine"
-  os_type              = "linux"
-  name                 = var.linux_vm_name
-  location             = var.location_primary
-  resource_group_name  = module.rg.name
-  network_interface_id = module.network_linux.network_interface_id
-  ssh_public_key       = var.linux_ssh_public_key
-  image_publisher      = "canonical"
-  image_offer          = "ubuntu-24_04-lts"
-  image_sku            = "server"
-}
+# Commented out VM modules because modules/virtual-machine directory does not exist yet
+# module "vm_linux" {
+#   source               = "../virtual-machine"
+#   os_type              = "linux"
+#   name                 = var.linux_vm_name
+#   location             = var.location_primary
+#   resource_group_name  = module.rg.name
+#   network_interface_id = module.network_linux.network_interface_id
+#   ssh_public_key       = var.linux_ssh_public_key
+#   image_publisher      = "canonical"
+#   image_offer          = "ubuntu-24_04-lts"
+#   image_sku            = "server"
+# }
 
-module "vm_windows" {
-  source               = "../virtual-machine"
-  os_type              = "windows"
-  name                 = var.windows_vm_name
-  location             = var.location_secondary
-  resource_group_name  = module.rg.name
-  network_interface_id = module.network_windows.network_interface_id
-  admin_password       = var.windows_admin_password
-  image_publisher      = "microsoftwindowsdesktop"
-  image_offer          = "windows-11"
-  image_sku            = "win11-24h2-entn-ltsc"
-}
+# module "vm_windows" {
+#   source               = "../virtual-machine"
+#   os_type              = "windows"
+#   name                 = var.windows_vm_name
+#   location             = var.location_secondary
+#   resource_group_name  = module.rg.name
+#   network_interface_id = module.network_windows.network_interface_id
+#   admin_password       = var.windows_admin_password
+#   image_publisher      = "microsoftwindowsdesktop"
+#   image_offer          = "windows-11"
+#   image_sku            = "win11-24h2-entn-ltsc"
+# }
 
 module "data_factory" {
-  source              = "../data-factory"
+  source              = "../datafactory"
   name                = var.datafactory_name
   location            = var.location_primary
   resource_group_name = module.rg.name
 }
 
 module "key_vault" {
-  source              = "../key-vault"
+  source              = "../keyvault"
   name                = var.keyvault_name
   location            = var.location_primary
   resource_group_name = module.rg.name
@@ -77,14 +78,14 @@ module "log_analytics" {
 }
 
 module "sql_server" {
-  source                         = "../sql-server"
-  name                           = var.sql_server_name
-  location                       = var.sql_location
-  resource_group_name            = module.rg.name
-  administrator_login            = var.sql_admin_login
-  aad_admin_login                = var.sql_aad_admin_login
-  aad_admin_object_id            = var.sql_aad_admin_object_id
-  public_network_access_enabled  = false
+  source                        = "../sql-server"
+  name                          = var.sql_server_name
+  location                      = var.sql_location
+  resource_group_name           = module.rg.name
+  administrator_login           = var.sql_admin_login
+  aad_admin_login               = var.sql_aad_admin_login
+  aad_admin_object_id           = var.sql_aad_admin_object_id
+  public_network_access_enabled = false
 }
 
 module "storage" {
@@ -95,7 +96,7 @@ module "storage" {
 }
 
 module "app_service" {
-  source              = "../app-service"
+  source              = "../appservice"
   name                = var.app_service_name
   suffix              = var.app_service_suffix
   location            = var.app_service_location
