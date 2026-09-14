@@ -475,6 +475,11 @@ resource "azurerm_log_analytics_workspace_table_custom_log" "res-60" {
   display_name = "AACAudit"
   name         = "AACAudit"
   workspace_id = azurerm_log_analytics_workspace.res-20.id
+
+  column {
+    name = "RawData"
+    type = "string"
+  }
 }
 resource "azurerm_log_analytics_workspace_table_custom_log" "res-61" {
   display_name = "AACHttpRequest"
