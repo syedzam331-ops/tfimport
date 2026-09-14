@@ -20,7 +20,7 @@ workloads = {
   }
 
   "rg02" = {
-     name_prefix          = "uat-rg02"
+    name_prefix          = "uat-rg02"
     rg_name              = "uat-rg02"
     location_primary     = "eastus"
     location_secondary   = "southindia"
@@ -36,6 +36,7 @@ workloads = {
     app_service_name     = "uat-web-02"
     app_service_location = "westus3"
   }
+
   "rg03" = {
     name_prefix          = "uat-rg03"
     rg_name              = "uat-rg03"
@@ -53,7 +54,8 @@ workloads = {
     app_service_name     = "uat-web-03"
     app_service_location = "westus3"
   }
-  rg04 = {
+
+  "rg04" = {
     name_prefix          = "uat-rg04"
     rg_name              = "uat-rg04"
     location_primary     = "eastus"
