@@ -1,3 +1,8 @@
+variable "create_public_ip" {
+  type    = bool
+  default = false
+}
+
 resource "azurerm_virtual_network" "this" {
   name                = "vnet-${var.location}-${var.suffix}"
   location            = var.location
@@ -35,6 +40,7 @@ resource "azurerm_network_security_rule" "inbound" {
 }
 
 resource "azurerm_public_ip" "this" {
+  count               = var.create_public_ip ? 1 : 0
   name                = "${var.name_prefix}-ip"
   location            = var.location
   resource_group_name = var.resource_group_name
@@ -50,11 +56,11 @@ resource "azurerm_network_interface" "this" {
     name                          = "ipconfig1"
     subnet_id                     = azurerm_subnet.this.id
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id          = azurerm_public_ip.this.id
+    public_ip_address_id          = var.create_public_ip ? azurerm_public_ip.this[0].id : null
   }
 }
 
 resource "azurerm_network_interface_security_group_association" "this" {
-  network_interface_id     = azurerm_network_interface.this.id
+  network_interface_id      = azurerm_network_interface.this.id
   network_security_group_id = azurerm_network_security_group.this.id
 }
